@@ -1,0 +1,19 @@
+server:
+  port: 8081
+  servlet:
+    path: /product
+logging:
+  level:
+    com.targetmol:  info
+
+spring:
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://192.168.3.53:1433;DatabaseName=tsweb
+    username: elastictest
+    password: gd#TOL131
+mybatis:
+  type-aliases-package: com.targetmol.products.dao #别名路径
+  configuration:
+    map-underscore-to-camel-case: true      #驼峰命名
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
