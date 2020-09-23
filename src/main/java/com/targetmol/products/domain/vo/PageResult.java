@@ -15,9 +15,10 @@ import java.util.List;
 public class PageResult<T> {
     private Integer code;
     private String message;
-    private List<T> data;
     private Integer tolPage;
     private Integer curPage;
+    private List<T> data;
+
 
 
 

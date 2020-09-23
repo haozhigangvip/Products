@@ -21,14 +21,26 @@ public class ProductsController {
     @Autowired
     private ProductsSerivces productsSerivces;
 
-    @GetMapping("cas")
-    public ResponseEntity<PageResult> findAllCas(@RequestParam(value = "page",required = false) Integer page){
-        return ResponseEntity.ok(productsSerivces.findAllCas(page));
-    }
 
 
     @GetMapping("product")
-    public ResponseEntity<ResultMsg> findByCas(@RequestParam("casNo") String casno){
-        return ResponseEntity.ok(productsSerivces.findByCas(casno));
+    public ResponseEntity<PageResult> findByCasNo(
+            @RequestParam(value = "casNo" ,required = false) String casno,
+            @RequestParam(value = "page",required = false) Integer page){
+        if(casno==null && page==null){
+           PageResult pg= new PageResult();
+           pg.setCode(0);
+           pg.setCurPage(0);
+           pg.setTolPage(0);
+           pg.setMessage("失败");
+            return ResponseEntity.ok(pg);
+        }
+        if(casno!=null){
+            return ResponseEntity.ok(productsSerivces.findByCasNo(casno,page));
+        }
+        if(page!=null){
+            return ResponseEntity.ok(productsSerivces.findAllCas(page));
+        }
+        return null;
     }
 }
