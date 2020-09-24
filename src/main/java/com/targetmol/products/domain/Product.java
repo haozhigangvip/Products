@@ -4,36 +4,43 @@ import lombok.Data;
 import javax.persistence.Table;
 
 public class Product  {
-    private String casno;
-    private String casname;
-    private String brand;
     private String code;
-    private Double price;
+    private String casNo;
+    private String casName;
+    private String brand;
     private Integer quantity;
-    private String warehose;
+    private Double price;
     private String pureness;
-    private String spec;
-    private Integer packsize;
-    private String packunit;
+    private String packSize;
+    private String packUnit;
     private String packMode;
-    private Integer isHave;
+    private String isHave;
+    private String warehouse;
     private String url;
+    private String spec;
 
-
-    public String getCasno() {
-        return casno;
+    public String getCode() {
+        return code;
     }
 
-    public void setCasno(String casno) {
-        this.casno = casno;
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    public String getCasname() {
-        return casname;
+    public String getCasNo() {
+        return casNo;
     }
 
-    public void setCasname(String casname) {
-        this.casname = casname;
+    public void setCasNo(String casNo) {
+        this.casNo = casNo;
+    }
+
+    public String getCasName() {
+        return casName;
+    }
+
+    public void setCasName(String casName) {
+        this.casName = casName;
     }
 
     public String getBrand() {
@@ -44,12 +51,12 @@ public class Product  {
         this.brand = brand;
     }
 
-    public String getCode() {
-        return code;
+    public Integer getQuantity() {
+        return quantity;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
     public Double getPrice() {
@@ -60,22 +67,6 @@ public class Product  {
         this.price = price;
     }
 
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    public String getWarehose() {
-        return warehose;
-    }
-
-    public void setWarehose(String warehose) {
-        this.warehose = warehose;
-    }
-
     public String getPureness() {
         return pureness;
     }
@@ -84,28 +75,20 @@ public class Product  {
         this.pureness = pureness;
     }
 
-    public String getSpec() {
-        return spec;
+    public String getPackSize() {
+        return packSize;
     }
 
-    public void setSpec(String spec) {
-        this.spec = spec;
+    public void setPackSize(String packSize) {
+        this.packSize = packSize;
     }
 
-    public Integer getPacksize() {
-        return packsize;
+    public String getPackUnit() {
+        return packUnit;
     }
 
-    public void setPacksize(Integer packsize) {
-        this.packsize = packsize;
-    }
-
-    public String getPackunit() {
-        return packunit;
-    }
-
-    public void setPackunit(String packunit) {
-        this.packunit = packunit;
+    public void setPackUnit(String packUnit) {
+        this.packUnit = packUnit;
     }
 
     public String getPackMode() {
@@ -116,12 +99,20 @@ public class Product  {
         this.packMode = packMode;
     }
 
-    public Integer getIsHave() {
+    public String getIsHave() {
         return isHave;
     }
 
-    public void setIsHave(Integer isHave) {
+    public void setIsHave(String isHave) {
         this.isHave = isHave;
+    }
+
+    public String getWarehouse() {
+        return warehouse;
+    }
+
+    public void setWarehouse(String warehouse) {
+        this.warehouse = warehouse;
     }
 
     public String getUrl() {
@@ -130,5 +121,13 @@ public class Product  {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getSpec() {
+        return spec;
+    }
+
+    public void setSpec(String spec) {
+        this.spec = spec;
     }
 }

@@ -24,22 +24,18 @@ public class ProductsController {
 
 
     @GetMapping("product")
-    public ResponseEntity<PageResult> findByCasNo(
+    public <T>ResponseEntity<T> findByCasNo(
             @RequestParam(value = "casNo" ,required = false) String casno,
             @RequestParam(value = "page",required = false) Integer page){
         if(casno==null && page==null){
-           PageResult pg= new PageResult();
-           pg.setCode(0);
-           pg.setCurPage(0);
-           pg.setTolPage(0);
-           pg.setMessage("失败");
-            return ResponseEntity.ok(pg);
+
+            return (ResponseEntity<T>) ResponseEntity.ok(ResultMsg.error(0,"失败"));
         }
         if(casno!=null){
-            return ResponseEntity.ok(productsSerivces.findByCasNo(casno,page));
+            return  (ResponseEntity<T>)productsSerivces.findByCasNo(casno);
         }
         if(page!=null){
-            return ResponseEntity.ok(productsSerivces.findAllCas(page));
+            return  (ResponseEntity<T>)productsSerivces.findAllCas(page);
         }
         return null;
     }
