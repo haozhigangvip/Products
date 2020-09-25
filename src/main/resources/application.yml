@@ -13,11 +13,11 @@ pagehelper:
 spring:
   datasource:
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    url: jdbc:sqlserver://192.168.3.15:1433;DatabaseName=tsweb
-    username: tsbio
-    password: ts@801
-#    username: elastictest
-#    password: gd#TOL131
+    url: jdbc:sqlserver://192.168.3.53:1433;DatabaseName=tsweb
+#    username: tsbio
+#    password: ts@801
+    username: elastictest
+    password: gd#TOL131
 mybatis:
   type-aliases-package: com.targetmol.products.dao #别名路径
   configuration:

@@ -1,6 +1,5 @@
 package com.targetmol.products.filter;
 
-import com.targetmol.products.utils.ExceptionEumn;
 import com.targetmol.products.utils.JsonUtils;
 import com.targetmol.products.utils.MD5Util;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,10 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import java.util.*;
-import java.util.logging.Logger;
 @Component
 public class LoginInterceptorAction implements HandlerInterceptor {
-    Logger log = Logger.getLogger(LoginInterceptorAction.class.getName());
     @Value("${auth.Key}")
     private String authKey ;
 
@@ -28,7 +25,7 @@ public class LoginInterceptorAction implements HandlerInterceptor {
         if(sign!=null && time!=null && checkSign(sign,time)==true ){
             flag=true;
         }else{
-            responseError(response,ExceptionEumn.AUTHORIZATION_FAILD);
+            responseError(response);
         }
 
         return flag;
@@ -50,9 +47,14 @@ public class LoginInterceptorAction implements HandlerInterceptor {
         //计算请求时间与服务器时间相差是否大于60秒
         Date localDate=new Date(System.currentTimeMillis());
         Date remoteDate=new Date(Long.parseLong(time));
-        Long cz=localDate.getTime()-remoteDate.getTime();
+        Long cz=Math.abs(localDate.getTime()-remoteDate.getTime());
+
         if(cz>60000 || cz<0 ){
-            log.info("秘钥已过期");
+            System.out.println("对方请求时间："+remoteDate.toString());
+            System.out.println("我方服务器时间："+localDate.toString());
+            System.out.println(remoteDate.getTime());
+            System.out.println(localDate.getTime());
+            System.out.println("鉴权失败！！！！");
             return false;
         }
 
@@ -60,16 +62,17 @@ public class LoginInterceptorAction implements HandlerInterceptor {
         String localsign=getLocalToken(authKey,time);
         if(sign.toUpperCase().equals(localsign)==true){
             return true;
-
-        }else{
-            log.info("秘钥不匹配");
+        }else {
+            System.out.println(localDate.toString()+"  对方请求验证码："+sign);
+            System.out.println(localDate.toString()+"  我方验证码："+localsign);
+            System.out.println(localDate.toString()+"  鉴权失败！！！！");
         }
         return false;
 
     }
 
     //拒绝访问
-    private void responseError(HttpServletResponse response, ExceptionEumn eumn) throws IOException {
+    private void responseError(HttpServletResponse response) throws IOException {
         Map<String,Object> mp=new HashMap<String,Object>();
         response.setStatus(403);
         response.setCharacterEncoding("utf-8");

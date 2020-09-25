@@ -11,8 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import javax.xml.transform.Result;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,13 +18,8 @@ public class ProductsSerivces {
     @Autowired
     private ProductsDao productsDao;
 
-
-
-
-
     public ResponseEntity<ResultMsg<List<Product>>> findByCasNo(String casno) {
         try{
-
             List<Product> lst=productsDao.findByCasNo(casno);
             if(lst==null||lst.size()<=0){
                 return ResponseEntity.ok(ResultMsg.<List<Product>>error(0,"失败"));
